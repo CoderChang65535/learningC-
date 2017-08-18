@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
@@ -16,9 +17,27 @@ namespace learningC
             //HXTest();
             //jsonTest();
             //XMLClassToJsonTest();
-            dtTest();
+            //dtTest();
+            Console.WriteLine("主线程开始");
+            AsyncTest();
+            Console.WriteLine("主线程结束");
+            Console.ReadLine();
         }
 
+        static async void AsyncTest()
+        {     
+            var result=await Method();
+            Console.WriteLine("副线程结束");
+        }
+        static async Task<int> Method()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("异步执行" + i.ToString() + "..");
+                await Task.Delay(1000); //模拟耗时操作
+            }
+            return 1;
+        }
         static void HXTest()
         {
             string s = System.IO.File.ReadAllText(@"d:\HXin.xml");

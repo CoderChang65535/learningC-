@@ -1,1 +1,6 @@
 C:\Users\admin\Documents\Visual Studio 2015\Projects\learningC-\bin\Debug\learningC.exe.config
+C:\Users\admin\Documents\Visual Studio 2015\Projects\learningC-\bin\Debug\learningC.exe
+C:\Users\admin\Documents\Visual Studio 2015\Projects\learningC-\bin\Debug\learningC.pdb
+C:\Users\admin\Documents\Visual Studio 2015\Projects\learningC-\obj\Debug\learningC.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2015\Projects\learningC-\obj\Debug\learningC.exe
+C:\Users\admin\Documents\Visual Studio 2015\Projects\learningC-\obj\Debug\learningC.pdb
