@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
+using Microsoft.Win32;
 
 namespace learningC
 {
@@ -64,6 +66,35 @@ namespace learningC
             {
                 Console.Out.WriteLine(dt.Rows[i]["BZ"].ToString());
             }
+        }
+        public static void RegistryKeyTest()
+        {
+            //Test();
+            string registData;
+            string result = "没";
+            string localName = @"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\software.exe";
+            string key = "Path";
+            try
+            {
+
+                RegistryKey hkml = Registry.LocalMachine;
+                RegistryKey software = hkml.OpenSubKey(localName, true);
+                registData = software.GetValue(key).ToString();
+                bool flag = false;
+                var list = Directory.GetFiles(registData + @"\Bin", @"software.exe");
+                foreach (var x in list)
+                {
+                    flag = true;
+                }
+                if (flag)
+                {
+                    result = "有 ";
+                }
+            }
+            catch
+            {
+
+            }      
         }
         public static void DeleteQuotesFromBZ(DataTable dt)
         {
