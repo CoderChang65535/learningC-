@@ -40,6 +40,32 @@ namespace learningC
             }
             return 1;
         }
+
+        public static void ThreadTest()
+        {
+            Thread th = new Thread(ThreadTestIt);//异步单次执行
+            th.Start();
+        }
+        private static Mutex mut = new Mutex(false, "test");//线程锁
+        public static bool ThreadTestItFlag = true;//单实例运行锁
+        public static void ThreadTestIt()
+        {
+
+            if (ThreadTestItFlag == false)    //flag=false时退出当前循环
+            {
+                Console.Out.WriteLine("线程:已经有在执行的实例，放弃此次操作");
+                ThreadTestItFlag = false;
+                return;
+            }
+            if (ThreadTestItFlag == true)  //条件满足时执行。
+            {
+                ThreadTestItFlag = false;
+                mut.WaitOne();
+                mut.ReleaseMutex();
+                ThreadTestItFlag = true;
+                Console.Out.WriteLine("线程:此次完成，可以再次执行该操作");
+            }
+        }
         static void HXTest()
         {
             string s = System.IO.File.ReadAllText(@"d:\HXin.xml");
