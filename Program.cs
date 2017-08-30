@@ -20,12 +20,30 @@ namespace learningC
             //jsonTest();
             //XMLClassToJsonTest();
             //dtTest();
-            Console.WriteLine("主线程开始");
+            /*Console.WriteLine("主线程开始");
             AsyncTest();
             Console.WriteLine("主线程结束");
-            Console.ReadLine();
+            Console.ReadLine();*/
+            LengthTest();
         }
-
+        public static string AddKPJHToRemarks(string remarks)
+        {
+            int length = Encoding.Default.GetByteCount(remarks);
+            string kpjh = " 机号:0";
+            int kpjhLength = Encoding.Default.GetByteCount(kpjh);
+            if (length + kpjhLength < 160)
+            {
+                remarks += kpjh;
+            }
+            return remarks;
+        }
+        static void LengthTest()
+        {
+            string remarks = Console.In.ReadLine();
+            Console.Out.WriteLine(Encoding.Default.GetByteCount(remarks));
+            string str = AddKPJHToRemarks(remarks);
+            Console.Out.WriteLine(str);
+        }
         static async void AsyncTest()
         {     
             var result=await Method();
